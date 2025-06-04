@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GameRealms</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Press+Start+2P&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0e0e0e;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #1c1c1c;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(255, 0, 85, 0.2);
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 20px;
+      color: #ff0055;
+      letter-spacing: 1px;
+      text-shadow: 0 0 3px #ff0055; /* Reduced glow */
+    }
+
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 16px;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+      font-weight: 600;
+    }
+
+    header nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(270deg, #ff0055, #00ffff, #ff00ff, #00ff99);
+      background-size: 600% 600%;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+      animation: rgbShift 6s ease infinite;
+      opacity: 0;
+    }
+
+    header nav a:hover,
+    header nav a:focus {
+      color: #ff0055;
+    }
+
+    header nav a:hover::after,
+    header nav a:focus::after {
+      width: 100%;
+      opacity: 1;
+    }
+    .hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) brightness(0.5);
+  z-index: -1;
+  transition: background-image 1s ease-in-out;
+}
+
+
+    .hero {
+      position: relative;
+      padding: 80px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('game.jpg') center/cover no-repeat;
+      filter: blur(6px) brightness(0.4);
+      z-index: -1;
+      animation: subtlePulse 10s ease-in-out infinite alternate;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0e0e0e;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(28, 28, 28, 0.95);
+      position: fixed;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(255, 0, 85, 0.2);
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 20px;
+      color: #ff0055;
+      letter-spacing: 1px;
+      text-shadow: 0 0 3px #ff0055;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: #ff0055;
+    }
+
+    .cta-button {
+      padding: 10px 20px;
+      background: #ff0055;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 100px 20px 40px;
+      background: url('') center/cover no-repeat;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      color: #fff;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #ff0055;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .hero button {
+      padding: 12px 30px;
+      font-size: 16px;
+      background: #ff0055;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 10px #ff0055;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      line-height: 1.2;
+      max-width: 600px;
+      color: #ff0055;
+      text-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055, 0 0 30px #ff0055;
+      animation: glowPulse 2s ease-in-out infinite alternate;
+    }
+
+    .hero img {
+      width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff0055, 0 0 40px #ff0055;
+      animation: imgGlow 5s ease-in-out infinite alternate;
+      background: transparent;
+    }
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(0px) brightness(1.2);
+      z-index: -2;
+
+    }
+    .section-divider {
+  border: none;
+  height: 4px;
+  background: linear-gradient(270deg, #ff0055, #00ffff, #ff00ff, #00ff99);
+  animation: rgbShift 6s ease infinite;
+  border-radius: 2px;
+  margin: 10px auto;
+  width: 98%;
+}
+
+    .character-section {
+      position: relative;
+      padding: 60px 40px;
+      z-index: 1;
+    }
+
+    .character-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(4px) brightness(0.6);
+      z-index: -2;
+    }
+
+    .character-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    .character-section {
+      padding: 60px 40px;
+    }
+
+    .character {
+      display: flex;
+      margin-bottom: 60px;
+      align-items: center;
+      gap: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+    
+
+    .character:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .character img {
+      width: 300px;
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+      background: transparent;
+    }
+
+    .character img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px #ff0055, 0 0 80px #ff0055;
+    }
+
+    .character-info {
+      max-width: 500px;
+    }
+
+    .character-info h2 {
+      font-size: 34px;
+      margin-bottom: 10px;
+      color: #ff0055;
+      text-shadow: 0 0 10px #ff0055;
+    }
+
+    .character-info p {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #ccc;
+    }
+
+    .character-info a {
+      text-decoration: none;
+      padding: 12px 28px;
+      background: linear-gradient(270deg, #ff0055, #00ffff, #ff00ff, #00ff99);
+      background-size: 600% 600%;
+      color: #fff;
+      border-radius: 30px;
+      font-weight: bold;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 10px #ff0055, 0 0 20px #00ffff, 0 0 30px #ff00ff, 0 0 40px #00ff99;
+      animation: rgbShift 8s ease infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .character-info a::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.15);
+      transform: rotate(45deg);
+      transition: all 0.5s ease;
+      z-index: 0;
+    }
+    .auth-section {
+      background: #0e0e0e;
+      padding: 80px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .auth-box {
+      background-color: #1c1c1c;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #ff0055, 0 0 60px #00ffff;
+      width: 350px;
+      text-align: center;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: 0.3s;
+    }
+
+    .tab-btn.active {
+      color: #ff0055;
+      border-color: #ff0055;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .auth-input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #222;
+      color: #fff;
+      font-size: 16px;
+      box-shadow: inset 0 0 10px #ff00ff;
+    }
+
+    .auth-button {
+      width: 100%;
+      padding: 12px;
+      background: #ff0055;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 0 15px #ff0055, 0 0 25px #00ffff;
+      transition: transform 0.3s ease;
+    }
+
+    .auth-button:hover {
+      transform: scale(1.05);
+    }
+
+    .character-info a:hover::before {
+      top: -10%;
+      left: -10%;
+    }
+
+    .character-info a span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .character-info a:hover {
+      background-position: 100% 0;
+      transform: scale(1.05);
+    }
+
+    @keyframes rgbShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes glowPulse {
+      0% {
+        text-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055, 0 0 30px #ff0055;
+      }
+      100% {
+        text-shadow: 0 0 15px #ff00aa, 0 0 25px #ff00aa, 0 0 40px #ff00aa;
+      }
+    }
+
+    @keyframes imgGlow {
+      0% { box-shadow: 0 0 20px #ff0055, 0 0 40px #ff0055; }
+      100% { box-shadow: 0 0 40px #ff00aa, 0 0 80px #ff00aa; }
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes subtlePulse {
+      0%, 100% { filter: blur(6px) brightness(0.4); }
+      50% { filter: blur(8px) brightness(0.5); }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; max-width: 100%; }
+      .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: auto;
+        padding: 40px 20px;
+      }
+      .hero img {
+        width: 250px;
+        margin-top: 20px;
+      }
+      .character {
+        flex-direction: column !important;
+        text-align: center;
+      }
+      .character img {
+        margin-bottom: 20px;
+      }
+      .character-info {
+        max-width: 100%;
+      }
+    }
+       html { scroll-behavior: smooth; }
+    .cta-button { cursor: pointer; }
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      display: none;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .auth-box {
+      background-color: #1c1c1c;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #ff0055, 0 0 60px #00ffff;
+      width: 350px;
+      text-align: center;
+    }
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      color: #fff;
+      cursor: pointer;
+    }
+    footer {
+      position: relative;
+      background-color: #1c1c1c;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      z-index: 0;
+      overflow: hidden;
+    }
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('footer.jpg') center/cover no-repeat;
+      filter: blur(8px) brightness(0.4);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">GameRealms</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Gallery</a>
+      <a href="#">Games</a>
+      <a href="#">News</a>
+      <a href="#">Contact</a>
+    </nav>
+    <button class="cta-button" onclick="openAuthModal()">Join Us Now</button>
+  </header>
+
+  <section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="hero.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-content">
+      <h1>WELCOME TO GAMESPLAY</h1>
+      <p>Online gaming site where worlds collide and legends are born. Dive into epic adventures and master your skills.</p>
+      <button>MORE ABOUT US</button>
+    </div>
+  </section>
+
+<hr class="section-divider">
+
+  <section class="character-section" id="characters">
+     <video autoplay muted loop playsinline class="character-video">
+      <source src="character.mp4" type="video/mp4" />
+    </video>
+    <div class="character">
+      <img src="kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
+      <audio id="kratos-voice" src="kratos.mpeg" preload="auto"></audio>
+      <div class="character-info">
+        <h2>Kratos</h2>
+        <p>The Ghost of Sparta, fueled by vengeance, he battles gods and monsters alike in his journey of redemption.</p>
+        <a href="https://godofwar.fandom.com/wiki/Kratos"><span>Read More</span></a>
+      </div>
+    </div>
+
+    <div class="character">
+      <img src="atreus.png" alt="Atreus" onmouseenter="playVoice('atreus-voice')" onmouseleave="stopVoice('atreus-voice')">
+       <audio id="atreus-voice" src="atreus.mp3" preload="auto"></audio>
+      <div class="character-info">
+        <h2>Atreus</h2>
+        <p>Son of Kratos, also known as Loki, Atreus walks the line between godhood and humanity.</p>
+        <a href="https://godofwar.fandom.com/wiki/Atreus"><span>Read More</span></a>
+      </div>
+    </div>
+
+    <div class="character">
+      <img src="freya.png" alt="Freya">
+      <div class="character-info">
+        <h2>Freya</h2>
+        <p>A fierce goddess and warrior, Freya is a mother, sorceress, and formidable ally—or enemy—in the Norse realm.</p>
+        <a href="https://godofwar.fandom.com/wiki/Freya"><span>Read More</span></a>
+      </div>
+    </div>
+
+    <div class="character">
+      <img src="ezio.png" alt="Ezio Auditore">
+      <div class="character-info">
+        <h2>Ezio Auditore</h2>
+        <p>The master assassin from the Renaissance era, Ezio's story is one of honor, revenge, and the hidden blade.</p>
+        <a href="https://assassinscreed.fandom.com/wiki/Ezio_Auditore_da_Firenze"><span>Read More</span></a>
+      </div>
+    </div>
+
+    <div class="character">
+      <img src="michal.png" alt="Michael De Santa">
+      <div class="character-info">
+        <h2>Michael De Santa</h2>
+        <p>One of the three protagonists in GTA V, Michael is a retired bank robber trying to balance his family life and criminal past.</p>
+        <a href="https://gta.fandom.com/wiki/Michael_De_Santa"><span>Read More</span></a>
+      </div>
+    </div>
+
+    <div class="character">
+      <img src="frenklin.png" alt="Franklin Clinton">
+      <div class="character-info">
+        <h2>Franklin Clinton</h2>
+        <p>A former street gangster looking for serious opportunities and real money in Los Santos.</p>
+        <a href="https://gta.fandom.com/wiki/Franklin_Clinton"><span>Read More</span></a>
+      </div>
+    </div>
+
+    <div class="character">
+      <img src="trever.png" alt="Trevor Philips">
+      <div class="character-info">
+        <h2>Trevor Philips</h2>
+        <p>Known for his chaotic and violent personality, Trevor is an unpredictable yet strangely loyal character in GTA V.</p>
+        <a href="https://gta.fandom.com/wiki/Trevor_Philips"><span>Read More</span></a>
+      </div>
+    </div>
+  </section>
+  <div class="modal-overlay" id="authModal">
+    <div class="auth-box">
+      <button class="close-btn" onclick="closeAuthModal()">&times;</button>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('login')">Login</button>
+        <button class="tab-btn" onclick="showTab('signup')">Signup</button>
+      </div>
+      <div id="login" class="tab-content active">
+        <input type="text" placeholder="Username" class="auth-input" />
+        <input type="password" placeholder="Password" class="auth-input" />
+        <button class="auth-button">Login</button>
+      </div>
+      <div id="signup" class="tab-content">
+        <input type="text" placeholder="Username" class="auth-input" />
+        <input type="email" placeholder="Email" class="auth-input" />
+        <input type="password" placeholder="Password" class="auth-input" />
+        <button class="auth-button">Signup</button>
+      </div>
+    </div>
+  </div>
+
+  <footer style="margin-top: 25px; text-align: center; padding: 40px 20px; background-color: #1c1c1c; color: #fff;">
+  <hr style="border: none; height: 4px; background: linear-gradient(270deg, #ff0055, #00ffff, #ff00ff, #00ff99); animation: rgbShift 8s ease infinite; border-radius: 2px; margin-bottom: 30px;">
+
+  <div class="footer-feedback" style="display: flex; flex-direction: column; align-items: center;">
+    <h3>Send us your feedback</h3>
+    <form>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Your email" style="width: 300px; padding: 10px; border-radius: 6px; border: none;">
+        <label for="thought">Thought:</label>
+        <textarea id="thought" placeholder="Your thoughts" rows="4" style="width: 300px; padding: 10px; border-radius: 6px; border: none;"></textarea>
+        <button type="submit" style="padding: 10px 20px; background-color: #ff0055; color: #fff; border: none; border-radius: 6px; cursor: pointer;">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <p>Follow us on:</p>
+    <p>
+      <a href="#" style="color: #00ffff; margin: 0 10px;">Instagram</a> |
+      <a href="#" style="color: #ff00ff; margin: 0 10px;">Twitter</a> |
+      <a href="#" style="color: #00ff99; margin: 0 10px;">YouTube</a>
+    </p>
+    <p style="margin-top: 20px; font-size: 14px; color: #aaa;">&copy; 2025 GameRealms. All rights reserved.</p>
+  </div>
+</footer>
+ <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+    function openAuthModal() {
+      document.getElementById("authModal").classList.add("active");
+    }
+    function closeAuthModal() {
+      document.getElementById("authModal").classList.remove("active");
+    }
+    function playVoice(id) {
+    const audio = document.getElementById(id);
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play();
+    }
+  }
+    function stopVoice(id) {
+    const audio = document.getElementById(id);
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }
+  </script>
+
+
+</body>
+</html>
