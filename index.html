@@ -262,6 +262,31 @@
   margin: 10px auto;
   width: 98%;
 }
+#thankYouOverlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 999999; /* Make sure it's on top */
+  backdrop-filter: blur(4px);
+}
+
+#thankYouPopup {
+  display: none;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(28, 28, 28, 0.98);
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px #ff0055, 0 0 60px #00ffff;
+  text-align: center;
+  z-index: 100000; /* Ensure it's above the overlay */
+  animation: pop 0.5s ease;
+  color: #fff;
+}
 
     .character-section {
       position: relative;
@@ -602,32 +627,21 @@
     opacity: 1;
   }
 }
-}
-#thankYouOverlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
-  z-index: 999999; /* Make sure it's on top */
-  backdrop-filter: blur(4px);
+@keyframes bounceUp {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  40% {
+    transform: translateY(-100px);
+    opacity: 1;
+  }
+  
+  100% {
+    transform: translateY(25px);
+  }
 }
 
-#thankYouPopup {
-  display: none;
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(28, 28, 28, 0.98);
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 30px #ff0055, 0 0 60px #00ffff;
-  text-align: center;
-  z-index: 100000; /* Ensure it's above the overlay */
-  animation: pop 0.5s ease;
-  color: #fff;
-}
 
   </style>
 </head>
@@ -662,7 +676,7 @@
       <source src="character.mp4" type="video/mp4" />
     </video>
     <div class="character">
-      <img src="Kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
+      <img src="kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
       <audio id="kratos-voice" src="kratos.mpeg" preload="auto"></audio>
       <div class="character-info">
         <h2>Kratos</h2>
@@ -754,23 +768,40 @@
 
 
 
-  <div class="footer-feedback" style="display: flex; flex-direction: column; align-items: center;">
+  <div class="footer-feedback" id="feedbackContainer" style="display: flex; flex-direction: column; align-items: center;">
   <h3>Send us your feedback</h3>
-  <!-- Feedback Form (Custom but submits to Google Form silently) -->
-  <form action="https://docs.google.com/forms/d/e/1FAIpQLSdK_Pz7DAJmHD3I_egIuHQlLEKNZCmy4-P60cCKAel0TO77Hg/formResponse"
-      method="POST"
-      target="hidden_iframe"
-      onsubmit="showThankYou();">
 
-  <label>Email:</label>
-  <input type="email" name="entry.720039949" required placeholder="Your email" />
+  <form id="feedbackForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdK_Pz7DAJmHD3I_egIuHQlLEKNZCmy4-P60cCKAel0TO77Hg/formResponse"
+        method="POST" target="hidden_iframe" onsubmit="handleFeedbackSubmit(event)">
+    <label>Email:</label>
+    <input type="email" name="entry.720039949" required placeholder="Your email" />
 
-  <label>Your Thought:</label>
-  <textarea name="entry.614927432" required placeholder="Your thoughts..."></textarea>
+    <label>Your Thought:</label>
+    <textarea name="entry.614927432" required placeholder="Your thoughts..."></textarea>
 
-  <button type="submit">Submit</button>
-</form>
-<iframe name="hidden_iframe" style="display:none;"></iframe>
+    <button type="submit">Submit</button>
+  </form>
+
+   <div id="thankYouBox" style="
+    display: none;
+    margin-top: 10px;
+    background: rgba(28, 28, 28, 0.98);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #ff0055, 0 0 60px #00ffff;
+    text-align: center;
+    color: #fff;
+    animation: bounceUp 1s ease;
+    transform: translateY(25px);
+  ">
+    <div style="font-size: 60px; color: #00ff99; margin-bottom: 10px;">✔</div>
+    <h2 style="color: #ff00ff; margin-bottom: 10px;">Thank you!</h2>
+    <p>Your feedback was submitted.</p>
+  </div>
+
+  <iframe name="hidden_iframe" style="display: none;"></iframe>
+</div>
+
 
 
 
@@ -879,6 +910,28 @@ function showThankYou() {
     }, 2500);
   }, 1000);
 }
+function handleFeedbackSubmit(e) {
+  e.preventDefault();
+
+  // Hide form, show thank-you box
+  document.getElementById("feedbackForm").style.display = "none";
+  document.getElementById("thankYouBox").style.display = "block";
+
+  // Submit silently to Google Form
+  e.target.submit();
+
+  // Set session flag to reset after refresh
+  sessionStorage.setItem('feedbackSubmitted', 'true');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem('feedbackSubmitted')) {
+    document.getElementById("feedbackForm").style.display = "block";
+    document.getElementById("thankYouBox").style.display = "none";
+    sessionStorage.removeItem('feedbackSubmitted');
+  }
+});
+
   </script>
 
 
