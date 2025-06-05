@@ -491,6 +491,21 @@
       0%, 100% { filter: blur(6px) brightness(0.4); }
       50% { filter: blur(8px) brightness(0.5); }
     }
+    @keyframes pop {
+    0% {
+      transform: scale(0.5) translate(-50%, -50%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(1) translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+  :target {
+  animation: pop 0.5s ease;
+}
+
 
     @media (max-width: 768px) {
       .hero h1 { font-size: 32px; max-width: 100%; }
@@ -592,7 +607,7 @@
     </video>
     <div class="hero-content">
       <h1>WELCOME TO GAMESPLAY</h1>
-      <p>Online gaming site where worlds collide and legends are born. Dive into epic adventures and master your skills.</p>
+      <p>"Meet the faces behind your favorite games — detailed, deadly, and designed to dominate. Explore their powers, their backstories, and what makes them legends in every arena."</p>
       <button>MORE ABOUT US</button>
     </div>
   </section>
@@ -604,7 +619,7 @@
       <source src="character.mp4" type="video/mp4" />
     </video>
     <div class="character">
-      <img src="Kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
+      <img src="kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
       <audio id="kratos-voice" src="kratos.mpeg" preload="auto"></audio>
       <div class="character-info">
         <h2>Kratos</h2>
@@ -694,23 +709,13 @@
 
   <div class="footer-feedback" style="display: flex; flex-direction: column; align-items: center;">
   <h3>Send us your feedback</h3>
-  <form id="feedbackForm" action="https://formspree.io/f/xldndoar" method="POST">
-    <input type="hidden" name="_next" value="https://adarsh705875.github.io/gamingrealms/#thank-you">
-    <input type="hidden" name="_captcha" value="false">
-
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required placeholder="Your email"
-        style="width: 300px; padding: 10px; border-radius: 6px; border: none;">
-      <label for="thought">Thought:</label>
-      <textarea id="thought" name="thought" required placeholder="Your thoughts" rows="4"
-        style="width: 300px; padding: 10px; border-radius: 6px; border: none;"></textarea>
-      <button type="submit"
-        style="padding: 10px 20px; background-color: #ff0055; color: #fff; border: none; border-radius: 6px; cursor: pointer;">
-        Submit
-      </button>
-    </div>
-  </form>
+  <form id="feedbackForm">
+  <label>Email:</label>
+  <input type="email" id="email" name="email" required>
+  <label>Thought:</label>
+  <textarea id="thought" name="thought" rows="4" required></textarea>
+  <button type="submit">Submit</button>
+</form>
 </div>
 <div id="thankYouPopup"
   style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; padding:30px; border-radius:12px; box-shadow:0 0 20px rgba(0,255,0,0.7); text-align:center; z-index:999; animation: pop 0.5s ease;">
@@ -730,26 +735,31 @@
   </div>
 </footer>
  <script>
-    function showTab(tabId) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      event.target.classList.add('active');
-    }
-    function openAuthModal() {
-      document.getElementById("authModal").classList.add("active");
-    }
-    function closeAuthModal() {
-      document.getElementById("authModal").classList.remove("active");
-    }
-    function playVoice(id) {
+   
+  function showTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function openAuthModal() {
+    document.getElementById("authModal").classList.add("active");
+  }
+
+  function closeAuthModal() {
+    document.getElementById("authModal").classList.remove("active");
+  }
+
+  function playVoice(id) {
     const audio = document.getElementById(id);
     if (audio) {
       audio.currentTime = 0;
       audio.play();
     }
   }
-    function stopVoice(id) {
+
+  function stopVoice(id) {
     const audio = document.getElementById(id);
     if (audio) {
       audio.pause();
@@ -757,8 +767,38 @@
     }
   }
 
+  const form = document.getElementById('feedbackForm');
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-    
+  const data = {
+    email: document.getElementById('email').value,
+    thought: document.getElementById('thought').value
+  };
+
+  try {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbw3xIqFZFHaa5xwvB-EohWz5ai38cz0OM_mUfMfhwuYS5YGk22yQrybpEWGpvLd_vEy/exec', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (response.ok) {
+      document.getElementById("thankYouPopup").style.display = "block";
+      form.reset();
+      setTimeout(() => {
+        document.getElementById("thankYouPopup").style.display = "none";
+      }, 3000);
+    } else {
+      alert("Failed to send feedback.");
+    }
+  } catch (error) {
+    alert("Error sending feedback.");
+    console.error(error);
+  }
+});
+
+
 
   </script>
 
