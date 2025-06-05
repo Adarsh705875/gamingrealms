@@ -755,11 +755,11 @@
       audio.currentTime = 0;
     }
   }
-    const form = document.getElementById("feedbackForm");
+  const form = document.getElementById("feedbackForm");
   const popup = document.getElementById("thankYouPopup");
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Stop normal form redirect
+    e.preventDefault(); // stop default form behavior
 
     const email = document.getElementById("email").value.trim();
     const thought = document.getElementById("thought").value.trim();
@@ -772,7 +772,6 @@
       return;
     }
 
-    // Send data via fetch
     const formData = new FormData(form);
 
     fetch("https://formspree.io/f/xldndoar", {
@@ -788,13 +787,14 @@
           popup.style.display = "none";
         }, 3000);
       } else {
-        alert("Failed to submit. Try again later.");
+        alert("Failed to submit. Please try again later.");
       }
     })
     .catch(() => {
       alert("Error sending form. Check internet or try later.");
     });
   });
+
   </script>
 
 
