@@ -487,6 +487,155 @@
       background-position: 100% 0;
       transform: scale(1.05);
     }
+  .glitch-divider {
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 40px;
+  margin: 60px 0;
+  position: relative;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  animation: flicker 1.5s infinite alternate;
+  background: linear-gradient(90deg, #ff0000, #8000ff, #00ccff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.glitch-divider::before,
+.glitch-divider::after {
+  content: "";
+  height: 3px;
+  width: 25%;
+  background: linear-gradient(to right, red, purple, blue);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+}
+
+.glitch-divider::before {
+  left: 0;
+}
+
+.glitch-divider::after {
+  right: 0;
+}
+
+@keyframes flicker {
+  0%   { opacity: 1; text-shadow: 0 0 10px red; }
+  50%  { opacity: 0.8; text-shadow: 0 0 20px purple; }
+  100% { opacity: 1; text-shadow: 0 0 10px blue; }
+}
+
+    .gaming-blog {
+  padding: 80px 40px;
+  background-color: #0f0f0f;
+  color: #fff;
+}
+.gaming-blog {
+  padding: 30px 20px;
+  background-image: url('game.jpg'); /* gaming theme */
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Optional dark overlay */
+.gaming-blog::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75); /* dims background */
+  z-index: 0;
+}
+
+.blog-post {
+  position: relative;
+  z-index: 1;
+}
+
+
+.blog-post {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  background: rgba(28, 28, 28, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 0 30px #ff0055;
+  padding: 40px;
+}
+.blog-post {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  padding: 30px;
+  border-radius: 16px;
+  background: #1a1a1a;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+  animation: rgb-glow 6s infinite alternate;
+  transition: all 0.3s ease-in-out;
+}
+
+/* RGB Glow Animation */
+@keyframes rgb-glow {
+  0% {
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.7); /* red */
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(128, 0, 255, 0.7); /* purple */
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(0, 150, 255, 0.7); /* blue */
+  }
+}
+
+.blog-text {
+  flex: 2;
+  min-width: 300px;
+}
+
+.blog-text h1 {
+  font-size: 32px;
+  color: #00ffff;
+  margin-bottom: 10px;
+}
+
+.blog-text .meta {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.blog-text h2 {
+  font-size: 22px;
+  color: #ff00ff;
+  margin-top: 25px;
+}
+
+.blog-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.blog-video {
+  flex: 1;
+  min-width: 300px;
+  height: 350px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px #00ffff;
+}
+
 
     @keyframes rgbShift {
       0%, 100% { background-position: 0% 50%; }
@@ -558,6 +707,16 @@
         max-width: 100%;
       }
     }
+    @media (max-width: 768px) {
+  .blog-post {
+    flex-direction: column;
+  }
+
+  .blog-video {
+    height: 250px;
+  }
+}
+
        html { scroll-behavior: smooth; }
     .cta-button { cursor: pointer; }
     .modal-overlay {
@@ -676,7 +835,7 @@
       <source src="character.mp4" type="video/mp4" />
     </video>
     <div class="character">
-      <img src="kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
+      <img src="Kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
       <audio id="kratos-voice" src="kratos.mpeg" preload="auto"></audio>
       <div class="character-info">
         <h2>Kratos</h2>
@@ -760,13 +919,120 @@
       </div>
     </div>
   </div>
+<div class="glitch-divider">
+  <span>Game Realms Intel Feed</span>
+</div>
+<section class="gaming-blog">
+  <div class="blog-post">
+    <div class="blog-text">
+      <h1>🎮 2025 Gaming Forecast: What’s Coming Next?</h1>
+      <p class="meta">By GameRealms Team · Published June 5, 2025</p>
+      <p>
+        The gaming industry in 2025 is brimming with excitement. With next-gen tech, AI-driven worlds, and reboots of legendary franchises, fans are in for a wild ride.
+      </p>
+
+      <h2>🚀 Big Releases This Year</h2>
+      <p>
+        - **Elden Ring 2** is set to redefine open-world fantasy.  
+        - **GTA VI** finally lands after a decade of anticipation.  
+        - **God of War: The End Saga** teases the fall of Olympus.
+      </p>
+
+      <h2>🎮 Trends Taking Over</h2>
+      <p>
+        AI-driven NPCs, voice-controlled gameplay, and cross-platform progression are now baseline expectations.
+        Players crave realism, narrative depth, and seamless connectivity.
+      </p>
+
+      <p>
+        In this blog, we’ll break down all the confirmed launch dates, leaks, and what the community expects. Welcome to the new era of immersive storytelling.
+      </p>
+    </div>
+
+    <div class="blog-video">
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/vu7_2cW8Y5k" 
+              title="Gaming in 2025 Overview" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+
+<section class="gaming-blog">
+  <div class="blog-post">
+    <div class="blog-text">
+      <h1>🎭 GTA 6 Multiplayer & Story Leaks: What’s Cooking?</h1>
+      <p class="meta">By GameRealms Team · Published June 5, 2025</p>
+
+      <h2>🎮 Multiplayer: GTA Online 2.0</h2>
+      <p>
+        Rockstar is reportedly overhauling GTA Online into a true MMO-style experience in GTA 6. 
+        Leaked documents suggest cross-progression between console and PC, seamless city-wide lobbies (up to 100 players), and role-based progression — from street racer to cartel boss.
+        You’ll be able to build criminal empires with friends, invest in real estate, and trigger city-wide heists.
+      </p>
+
+      <p>
+        Expect seasonal events, live in-game news, and dynamic weather-based missions. Voice chat gets smarter too — with localized speech zones based on character proximity.
+      </p>
+
+      <h2>🕵️‍♀️ Story Leaks: Bonnie & Clyde 2.0</h2>
+      <p>
+        Leakers claim the GTA 6 story revolves around **Lucia** and **Jason**, two lovers turned outlaws, whose journey spans heists, betrayals, and a larger conspiracy tied to corrupted law enforcement.
+        The narrative is said to evolve based on your choices — who you betray or spare influences future missions and dialogue trees.
+      </p>
+
+      <p>
+        Rockstar’s decision system is deeper than ever. It’s not just kill-or-spare — it's how you earn loyalty, form factions, and change the city’s media narrative about you.
+      </p>
+    </div>
+
+    <div class="blog-video">
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TKzLqQyDMYk" 
+              title="GTA 6 Multiplayer & Story Leaks Breakdown" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="gaming-blog">
+  <div class="blog-post">
+    <div class="blog-text">
+      <h1>🗡️ Ghost of Yōtei: Vengeance Reforged in Feudal Japan</h1>
+      <p class="meta">By GameRealms Team · Published June 5, 2025</p>
+
+      <h2>🎮 A New Chapter Begins</h2>
+      <p>
+        Set in 1603, over 300 years after the events of *Ghost of Tsushima*, *Ghost of Yōtei* introduces players to Atsu, a rōnin seeking vengeance against the Yōtei Six, a group of masked outlaws responsible for her family's demise. This standalone sequel promises a rich narrative filled with emotion, honor, and retribution.
+      </p>
+
+      <h2>🗺️ Exploring Hokkaido's Wilderness</h2>
+      <p>
+        Players will traverse the diverse landscapes of Ezo (modern-day Hokkaido), from snow-covered fields to dense forests. The game's open-world design encourages exploration, with dynamic weather systems and a living ecosystem that reacts to the player's actions.
+      </p>
+
+      <h2>⚔️ Enhanced Combat Mechanics</h2>
+      <p>
+        *Ghost of Yōtei* introduces new weaponry, including dual katanas, ōdachi, kusarigama, and tanegashima firearms. Combat has been refined to offer more fluidity and responsiveness, allowing players to engage enemies with a variety of styles and strategies.
+      </p>
+
+      <h2>🐺 A Loyal Companion</h2>
+      <p>
+        Atsu is accompanied by a loyal wolf companion, adding depth to both combat and exploration. This bond not only aids in battles but also enriches the storytelling, highlighting themes of loyalty and companionship.
+      </p>
+
+      <p>
+        Scheduled for release on October 2, 2025, exclusively for PlayStation 5, *Ghost of Yōtei* is poised to be a landmark title in the action-adventure genre.
+      </p>
+    </div>
+
+    <div class="blog-video">
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/6iLxOnuWl1c" 
+              title="Ghost of Yōtei Gameplay Overview" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
 
   <footer style="margin-top: 25px; text-align: center; padding: 40px 20px; background-color: #1c1c1c; color: #fff;">
   <hr style="border: none; height: 4px; background: linear-gradient(270deg, #ff0055, #00ffff, #ff00ff, #00ff99); animation: rgbShift 8s ease infinite; border-radius: 2px; margin-bottom: 30px;">
-
-
-
-
 
   <div class="footer-feedback" id="feedbackContainer" style="display: flex; flex-direction: column; align-items: center;">
   <h3>Send us your feedback</h3>
@@ -817,9 +1083,9 @@
   <div style="margin-top: 40px;">
     <p>Follow us on:</p>
     <p>
-      <a href="#" style="color: #00ffff; margin: 0 10px;">Instagram</a> |
+      <a href="https://www.instagram.com/adarsh_kadam_96?igsh=MTNoeGQ4cmczN2JxcQ%3D%3D&utm_source=qr" style="color: #00ffff; margin: 0 10px;">Instagram</a> |
       <a href="#" style="color: #ff00ff; margin: 0 10px;">Twitter</a> |
-      <a href="#" style="color: #00ff99; margin: 0 10px;">YouTube</a>
+      <a href="https://youtube.com/@legacyoflegends-p3p?si=NLMJBX-Xz5s4H8w8" style="color: #00ff99; margin: 0 10px;">YouTube</a>
     </p>
     <p style="margin-top: 20px; font-size: 14px; color: #aaa;">&copy; 2025 GameRealms. All rights reserved.</p>
   </div>
