@@ -66,17 +66,7 @@
       animation: rgbShift 6s ease infinite;
       opacity: 0;
     }
-
-    header nav a:hover,
-    header nav a:focus {
-      color: #ff0055;
-    }
-
-    header nav a:hover::after,
-    header nav a:focus::after {
-      width: 100%;
-      opacity: 1;
-    }
+    
     .hero::before {
   content: "";
   position: absolute;
@@ -160,6 +150,21 @@
     nav a:hover {
       color: #ff0055;
     }
+    .navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  flex-wrap: wrap;
+}
+
+.navbar .sparkles {
+  padding: 10px 20px;
+  margin: 10px 0;
+  text-decoration: none;
+}
+
 
     .cta-button {
       padding: 10px 20px;
@@ -536,12 +541,14 @@
 }
 .gaming-blog {
   padding: 30px 20px;
+  width: 100%;
   background-image: url('game.jpg'); /* gaming theme */
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
   position: relative;
   z-index: 1;
+  
 }
 
 /* Optional dark overlay */
@@ -582,6 +589,187 @@
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
   animation: rgb-glow 6s infinite alternate;
   transition: all 0.3s ease-in-out;
+}
+.read-more-wrapper {
+  text-align: center;
+  margin: 60px 0 40px;
+}
+:root {
+  --glitter: url("https://assets.codepen.io/13471/silver-glitter-background.png");
+}
+
+.read-more-wrapper {
+  text-align: center;
+  margin: 40px 0 30px;
+}
+
+.sparkles {
+  --clr: 260;
+  --shadows: 0%;
+  --shadowl: 0%;
+
+  font-size: max(2.5vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 5em;
+  text-decoration: none;
+  background: linear-gradient(
+    0deg,
+    hsla(var(--clr), 100%, 70%) 0%,
+    hsla(var(--clr), 100%, 65%) 5%,
+    hsla(var(--clr), 80%, 35%) 15%,
+    hsla(var(--clr), 10%, 0%) 40%,
+    hsla(var(--clr), 25%, 12%) 90%
+  );
+  background-size: 200% 300%;
+  background-position: 0% 0%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  transform: translate(0px);
+  transition: all 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+  box-shadow:
+    0 -0.5em 0.5em transparent,
+    0 0.5em 0.5em transparent,
+    0 0.25em 0.3em -0.2em hsla(var(--clr), 0%, 0%, 0.5),
+    0 0.35em 0.75em hsla(var(--clr), 0%, 0%, 0.75);
+}
+
+.sparkles::before,
+.sparkles::after {
+  --gradientPos: 50% 100%;
+  content: " ";
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  transition: inherit;
+}
+
+.sparkles:before {
+  inset: 0;
+  position: absolute;
+  transform: translate3d(0, 0, 0.01px);
+  border-radius: inherit;
+  background-image: var(--glitter), var(--glitter),
+    linear-gradient(180deg, black 0%, white 80%);
+  background-size: 300px 170px, 280px 130px, 200% 200%;
+  background-blend-mode: multiply, multiply, overlay;
+  background-position: 0px 0px, 0px 0px, var(--gradientPos);
+  background-repeat: repeat;
+  mix-blend-mode: color-dodge;
+  filter: brightness(2) contrast(0.75);
+  animation: bubble 20s linear infinite;
+  animation-play-state: paused;
+  opacity: 0.5;
+  box-shadow: inset 0 -8px 10px -7px hsla(var(--clr), 70%, 80%, 0.75);
+}
+
+.sparkles:after {
+  background-image: radial-gradient(
+      ellipse at center 70%,
+      hsla(var(--clr), 100%, 99%, 0.8) 5%,
+      hsla(var(--clr), 90%, 80%, 1) 20%,
+      transparent 50%,
+      transparent 200%
+    ),
+    linear-gradient(
+      90deg,
+      hsla(var(--clr), 80%, 10%, 1) -10%,
+      transparent 25%,
+      transparent 75%,
+      hsla(var(--clr), 80%, 10%, 1) 110%
+    );
+  box-shadow:
+    inset 0 0.25em 0.75em rgba(0, 0, 0, 1),
+    inset 0 -0.05em 0.2em rgba(255, 255, 255, 0.4),
+    inset 0 -1px 3px hsla(var(--clr), 80%, 50%, 0.75);
+  background-blend-mode: darken;
+  background-repeat: no-repeat;
+  background-size: 180% 80%, cover;
+  background-position: center 220%;
+  mix-blend-mode: hard-light;
+  filter: blur(5px);
+  opacity: 0;
+}
+
+.sparkles:hover,
+.sparkles.over {
+  background-position: 100% 100%;
+  box-shadow:
+    0 -0.2em 1.5em hsla(var(--clr), 90%, 50%, 0.3),
+    0 0.5em 2em hsla(var(--clr), 90%, 70%, 0.55),
+    0 0.25em 0.3em -0.2em hsla(var(--clr), 0%, 0%, 1),
+    0 0.35em 0.75em hsla(var(--clr), 0%, 0%, 1),
+    0 0.25em 0.5em -0.3em hsl(var(--clr), 30%, 99%, 1),
+    0 0.25em 0.5em hsla(var(--clr), 20%, 30%, 0.35),
+    inset 0 -2px 5px -2px rgba(255, 255, 255, 0.5);
+}
+
+.sparkles.over {
+  transition-duration: 2s;
+}
+
+.sparkles:hover:before,
+.sparkles.over:before {
+  --gradientPos: 50% 50%;
+  animation-play-state: running;
+  filter: brightness(2) contrast(1);
+  box-shadow: inset 0 -5px 10px -4px hsla(var(--clr), 70%, 80%, 0.3);
+  opacity: 0.8;
+}
+
+.sparkles:hover:after,
+.sparkles.over:after {
+  opacity: 0.8;
+  transform: translateY(0px);
+}
+
+.sparkles span {
+  grid-column: 1;
+  grid-row: 1;
+  background-image: linear-gradient(
+    hsl(calc(var(--clr) - 43), 27%, 85%) 0%,
+    hsl(calc(var(--clr) - 60), 22%, 80%) 19%,
+    hsl(calc(var(--clr) - 50), 20%, 75%) 30%,
+    hsl(calc(var(--clr) - 52), 36%, 98%) 43%,
+    hsl(var(--clr), 70%, 70%, 1) 51%,
+    hsl(var(--clr), 50%, 85%, 1) 52%,
+    rgb(255, 255, 255) 100%
+  );
+  background-size: 1em 3.45em;
+  color: rgb(214, 222, 226);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  filter: drop-shadow(0 0 0.05em rgba(0, 0, 0, 0.5)) drop-shadow(0 0.05em 0.05em rgba(0, 0, 0, 0.5));
+  transition: inherit;
+  padding: 0.75em 1em;
+  z-index: 10;
+}
+
+.sparkles:hover span,
+.sparkles:active span,
+.sparkles.over span {
+  background-position-y: -100%;
+}
+
+.sparkles:active {
+  transform: translateY(0.075em);
+  animation-duration: 8s;
+  filter: brightness(1.35) contrast(0.8) blur(5px);
+}
+
+@keyframes bubble {
+  0% {
+    background-position: 0px 340px, 0px 130px, var(--gradientPos);
+  }
+  100% {
+    background-position: 0px 0px, 0px 0px, var(--gradientPos);
+  }
 }
 
 /* RGB Glow Animation */
@@ -634,6 +822,10 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 20px #00ffff;
+}
+#colorRange {
+  opacity: 0;
+  pointer-events: none;
 }
 
 
@@ -715,6 +907,22 @@
   .blog-video {
     height: 250px;
   }
+}
+
+
+@keyframes bubble {
+    0% {
+        background-position: 0px 340px, 0px 130px, var(--gradientPos);
+    }
+    100% {
+        background-position: 0px 0px, 0px 0px, var(--gradientPos);
+    }
+}
+
+input {
+    position: absolute;
+    bottom: 30px;
+    width: 300px;
 }
 
        html { scroll-behavior: smooth; }
@@ -800,6 +1008,10 @@
     transform: translateY(25px);
   }
 }
+.hero, .gaming-blog {
+  background-attachment: fixed;
+}
+
 
 
   </style>
@@ -808,11 +1020,11 @@
   <header>
     <div class="logo">GameRealms</div>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Gallery</a>
-      <a href="#">Games</a>
-      <a href="#">News</a>
-      <a href="#">Contact</a>
+      <a   href="#">Home</a>
+      <a  href="#">Gallery</a>
+      <a  href="#">Games</a>
+      <a  href="#">News</a>
+      <a  href="#">Contact</a>
     </nav>
     <button class="cta-button" onclick="openAuthModal()">Join Us Now</button>
   </header>
@@ -835,7 +1047,7 @@
       <source src="character.mp4" type="video/mp4" />
     </video>
     <div class="character">
-      <img src="Kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
+      <img src="kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
       <audio id="kratos-voice" src="kratos.mpeg" preload="auto"></audio>
       <div class="character-info">
         <h2>Kratos</h2>
@@ -921,6 +1133,7 @@
   </div>
 <div class="glitch-divider">
   <span>Game Realms Intel Feed</span>
+  <h5>"News,Blogs,New Release"</h5>
 </div>
 <section class="gaming-blog">
   <div class="blog-post">
@@ -955,6 +1168,8 @@
     </div>
   </div>
 </section>
+<input id="colorRange" type="range" min="0" max="360" value="0" style="position: fixed; bottom: 20px; left: 20px; z-index: 999;">
+
 
 
 <section class="gaming-blog">
@@ -1022,6 +1237,7 @@
         Scheduled for release on October 2, 2025, exclusively for PlayStation 5, *Ghost of Yōtei* is poised to be a landmark title in the action-adventure genre.
       </p>
     </div>
+        
 
     <div class="blog-video">
       <iframe width="100%" height="100%" src="https://www.youtube.com/embed/6iLxOnuWl1c" 
@@ -1029,7 +1245,9 @@
     </div>
   </div>
 </section>
-
+<div class="read-more-wrapper">
+  <a href="more-news.html" class="sparkles"><span>→ Read More News</span></a>
+</div>
 
   <footer style="margin-top: 25px; text-align: center; padding: 40px 20px; background-color: #1c1c1c; color: #fff;">
   <hr style="border: none; height: 4px; background: linear-gradient(270deg, #ff0055, #00ffff, #ff00ff, #00ff99); animation: rgbShift 8s ease infinite; border-radius: 2px; margin-bottom: 30px;">
@@ -1197,8 +1415,49 @@ window.addEventListener('DOMContentLoaded', () => {
     sessionStorage.removeItem('feedbackSubmitted');
   }
 });
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
 
-  </script>
+window.onscroll = () => {
+  let current = "";
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    if (pageYOffset >= sectionTop - 60) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    if (link.getAttribute("href").includes(current)) {
+      link.classList.add("active");
+    }
+  });
+};
+
+  const clr = document.getElementById("colorRange");
+  const sparkles = document.querySelectorAll(".sparkles");
+
+  let hue = 0;
+  function animateHue() {
+    hue = (hue + 1) % 361; // Keep hue between 0-360
+    clr.value = hue;
+    sparkles.forEach(el => el.style.setProperty("--clr", hue));
+    requestAnimationFrame(animateHue); // Run next frame
+  }
+
+  // Initial pulse animation
+  setTimeout(() => {
+    sparkles.forEach(el => el.classList.add("over"));
+    setTimeout(() => {
+      sparkles.forEach(el => el.classList.remove("over"));
+    }, 2500);
+  }, 500);
+
+  animateHue(); // Start animation
+</script>
+
 
 
 </body>
