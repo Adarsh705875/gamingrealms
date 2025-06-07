@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ <link rel="stylesheet" href="StyleSheet.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GameRealms</title>
@@ -1076,7 +1077,7 @@ input[type="email"] {
       <source src="character.mp4" type="video/mp4" />
     </video>
     <div class="character">
-      <img src="Kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
+      <img src="kratos.png" alt="Kratos" onmouseenter="playVoice('kratos-voice')" onmouseleave="stopVoice('kratos-voice')">
       <audio id="kratos-voice" src="kratos.mpeg" preload="auto"></audio>
       <div class="character-info">
         <h2>Kratos</h2>
@@ -1140,6 +1141,18 @@ input[type="email"] {
       </div>
     </div>
   </section>
+
+
+<canvas id="particles"></canvas>
+<section class="top-games-2025">
+  <h2 class="section-title animated-title">🎮 Top 10 Game Releases of 2025 🎮</h2>
+  <div id="gameCardsContainer"></div>
+  <div class="more-games-button-container">
+    <a class="more-games-button" href="#">More Upcoming Games →</a>
+  </div>
+</section>
+
+
   <div class="modal-overlay" id="authModal">
     <div class="auth-box">
       <button class="close-btn" onclick="closeAuthModal()">&times;</button>
@@ -1485,6 +1498,76 @@ window.onscroll = () => {
   }, 500);
 
   animateHue(); // Start animation
+
+
+  const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particlesArray = [];
+    const colors = ["#0ff", "#f0f", "#00f", "#0f0"];
+
+    for (let i = 0; i < 40; i++) {
+      particlesArray.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 1.5,
+        dy: (Math.random() - 0.5) * 1.5,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx = -p.dx;
+        if (p.y < 0 || p.y > canvas.height) p.dy = -p.dy;
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+
+    function createGameCard({ number, title, date, desc, yt }) {
+      const today = new Date();
+      const launchDate = new Date(date);
+      const daysLeft = Math.ceil((launchDate - today) / (1000 * 60 * 60 * 24));
+
+      return `
+      <div class="game-release-card">
+        <div class="game-info">
+          <h3 class="game-header"><span class="game-number">${number}.</span> ${title} - ${launchDate.toLocaleDateString()}</h3>
+          <p class="game-description">${desc} Experience stunning graphics, gripping narratives, and gameplay innovations never seen before. Stay ready for a new level of immersion.</p>
+        </div>
+        <iframe src="${yt}" allowfullscreen></iframe>
+        <div class="release-countdown">🕒 Launches in ${daysLeft > 0 ? daysLeft : 'Launched'} days</div>
+      </div>`;
+    }
+
+    const games = [
+      { number: 1, title: "GTA VI", date: "2025-11-08", desc: "Rockstar returns with GTA VI, set in Vice City with dual protagonists and a deeply immersive storyline.", yt: "https://www.youtube.com/embed/QdBZY2fkU-0" },
+      { number: 2, title: "Ghost of Yōtei", date: "2025-10-14", desc: "An intense ninja epic set on Mt. Yōtei with dynamic swordplay and stealth elements.", yt: "https://www.youtube.com/embed/YOUR_TRAILER_URL" },
+      { number: 3, title: "Elden Ring 2", date: "2025-12-10", desc: "FromSoftware expands its fantasy universe with larger realms and deeper lore.", yt: "https://www.youtube.com/embed/YOUR_TRAILER_URL" },
+      { number: 4, title: "Final Fantasy XVII", date: "2025-08-20", desc: "Square Enix reimagines classic turn-based combat with cinematic storytelling and next-gen visuals.", yt: "https://www.youtube.com/embed/YOUR_TRAILER_URL" },
+      { number: 5, title: "Call of Duty: Shadow Ops", date: "2025-09-02", desc: "New era warfare with customizable missions and an adaptive AI enemy force.", yt: "https://www.youtube.com/embed/YOUR_TRAILER_URL" },
+      { number: 6, title: "Cyberpunk 2077: Rewired", date: "2025-10-30", desc: "A rebuilt version with new city sectors, romance arcs, and true next-gen performance.", yt: "https://www.youtube.com/embed/YOUR_TRAILER_URL" },
+      { number: 7, title: "Marvel's Spider-Man 3", date: "2025-07-17", desc: "Peter Parker and Miles Morales team up to battle a new symbiote threat across NYC.", yt: "https://www.youtube.com/embed/YOUR_TRAILER_URL" },
+      { number: 8, title: "Fable Reborn", date: "2025-11-05", desc: "The beloved fantasy franchise returns with player-driven kingdoms and moral systems.", yt: "https://www.youtube.com/embed/YOUR_TRAILER_URL" },
+      { number: 9, title: "Horizon: Starbound", date: "2025-12-01", desc: "Aloy ventures beyond Earth in this breathtaking sci-fi follow-up from Guerrilla Games.", yt: "https://www.youtube.com/embed/YOUR_TRAILER_URL" },
+      { number: 10, title: "Assassin’s Creed: Dynasty", date: "2025-09-18", desc: "Explore ancient China with new parkour, stealth, and a historical drama narrative.", yt: "https://www.youtube.com/embed/YOUR_TRAILER_URL" }
+    ];
+
+    const container = document.getElementById("gameCardsContainer");
+    container.innerHTML = games.map(createGameCard).join("");
 </script>
 
 
